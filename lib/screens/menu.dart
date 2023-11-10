@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:zumart/widgets/left_drawer.dart';
+import 'package:zumart/screens/zumart_form.dart';
+import 'package:zumart/widgets/shop_card.dart';
+
+
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -7,8 +12,13 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ZUMART'),
+        title: const Text(
+          ' ZUMART ',
+        ),
+        backgroundColor: Color.fromARGB(255, 13, 40, 192),
+        foregroundColor: Colors.white, 
       ),
+      drawer: const LeftDrawer(),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
@@ -20,8 +30,10 @@ class MyHomePage extends StatelessWidget {
                   'ZUMART Page',
                   textAlign: TextAlign.center,
                   style: TextStyle(
+                    fontFamily: AutofillHints.addressState,
                     fontSize: 30,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w900,
+                    color: Color.fromARGB(255, 13, 40, 192)
                   ),
                 ),
               ),
@@ -44,13 +56,6 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
-class ShopItem {
-  final String name;
-  final IconData icon;
-
-  ShopItem(this.name, this.icon);
-}
-
 final List<ShopItem> items = [
   ShopItem("Lihat Item", Icons.checklist),
   ShopItem("Tambah Item", Icons.add_shopping_cart),
@@ -60,34 +65,41 @@ final List<ShopItem> items = [
 class ShopCard extends StatelessWidget {
   final ShopItem item;
 
-  const ShopCard(this.item, {Key? key}) : super(key: key);
-
-  Color getButtonColor(String itemName) {
-    if (itemName == "Lihat Item") {
-      return Color.fromARGB(255, 1, 20, 130);
-    } else if (itemName == "Tambah Item") {
-      return Color.fromARGB(255, 13, 40, 192);
-    } else if (itemName == "Logout") {
-      return Color.fromARGB(255, 84, 110, 255);
-    } else {
-      return const Color.fromARGB(255, 0, 28, 185); 
-    }
-  }
+  const ShopCard(this.item, {super.key}); // Constructor
 
   @override
   Widget build(BuildContext context) {
-    Color buttonColor = getButtonColor(item.name);
+    Color cardColor; // Warna latar belakang card
+
+    // Tentukan warna berdasarkan nama item
+    if (item.name == "Lihat Item") {
+      cardColor = Color.fromARGB(255, 1, 20, 130);
+    } else if (item.name == "Tambah Item") {
+      cardColor = Color.fromARGB(255, 13, 40, 192);
+    } else if (item.name == "Logout") {
+      cardColor = Color.fromARGB(255, 84, 110, 255);
+    } else {
+      cardColor = Colors.grey; 
+    }
 
     return Material(
-      color: buttonColor, // Menggunakan warna sesuai dengan item
+      color: cardColor, // Atur warna latar belakang card
       child: InkWell(
+        // Area responsive terhadap sentuhan
         onTap: () {
+          // Memunculkan SnackBar ketika diklik
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(SnackBar(
                 content: Text("Kamu telah menekan tombol ${item.name}!")));
+                if (item.name == "Tambah Item") {
+                  // TODO: Gunakan Navigator.push untuk melakukan navigasi ke MaterialPageRoute yang mencakup ShopFormPage.
+                  Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const ShopFormPage()));
+                }
         },
         child: Container(
+          // Container untuk menyimpan Icon dan Text
           padding: const EdgeInsets.all(8),
           child: Center(
             child: Column(
@@ -112,7 +124,6 @@ class ShopCard extends StatelessWidget {
     );
   }
 }
-
 void main() {
   runApp(MaterialApp(
     home: MyHomePage(),
