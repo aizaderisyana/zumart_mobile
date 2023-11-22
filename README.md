@@ -49,7 +49,7 @@ Sebutkan seluruh widget yang kamu pakai pada tugas ini dan jelaskan fungsinya ma
 Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step! (bukan hanya sekadar mengikuti tutorial).
 
   1. **Membuat Halaman Formulir Penambahan Produk Baru**: 
-      Pertama, saya memulai dengan menambahkan aplikasi baru yang bernama authentication ke proyek Django saya. Untuk mendukung fungsi login, saya membuat fungsi dengan nama yang sama di dalam file views.py dan kemudian mengatur routing-nya agar dapat diakses. Setelah itu, saya melanjutkan ke pembuatan tampilan login pada sisi Flutter dengan membuat file baru bernama login.dart di dalam folder screens. File ini berisi kode yang berkaitan dengan tampilan login pada aplikasi Flutter.
+      Pertama, menambahkan aplikasi baru yang bernama authentication ke proyek Django. Untuk mendukung fungsi login, saya membuat fungsi dengan nama yang sama di dalam file views.py dan kemudian mengatur routing-nya agar dapat diakses. Lalu, melanjutkan membuat tampilan login pada sisi Flutter dengan membuat file baru bernama login.dart di dalam folder screens. File ini berisi kode yang berkaitan dengan tampilan login pada aplikasi Flutter.
 
   2. **Mengintegrasikan sistem autentikasi Django dengan proyek tugas Flutter**:
       Langkah awal yang saya ambil adalah menambahkan dua paket ke aplikasi Flutter saya. Paket-paket tersebut adalah `provider` dan `pbp_django_auth`, yang saya tambahkan dengan menggunakan perintah `flutter pub add` untuk masing-masing paket. Setelah itu, saya membuat perubahan pada kode di file `main.dart` untuk mengintegrasikan dan mengkonfigurasi `CookieRequest` library yang digunakan untuk otentikasi dan pengelolaan sesi.
