@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zumart/screens/list_product.dart';
 import 'package:zumart/screens/menu.dart';
 import 'package:zumart/screens/zumart_form.dart';
 
@@ -18,7 +19,7 @@ class LeftDrawer extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                'Shopping List',
+                'ZUMART',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 30,
@@ -28,7 +29,7 @@ class LeftDrawer extends StatelessWidget {
               ),
               Padding(padding: EdgeInsets.all(10)),
               Text(
-                  "Catat seluruh keperluan belanjamu di sini!",
+                  "Your Shoe Collection",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 15,
@@ -41,7 +42,7 @@ class LeftDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.home_outlined),
-            title: const Text('Halaman Utama'),
+            title: const Text('Main Page'),
             // Bagian redirection ke MyHomePage
             onTap: () {
               Navigator.pushReplacement(
@@ -53,7 +54,7 @@ class LeftDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.add_shopping_cart),
-            title: const Text('Tambah Produk'),
+            title: const Text('Add Item'),
             // Bagian redirection ke ShopFormPage
             onTap: () {
               Navigator.push(
@@ -64,6 +65,17 @@ class LeftDrawer extends StatelessWidget {
             );
             },
           ),
+          ListTile(
+            leading: const Icon(Icons.shopping_basket),
+            title: const Text('List of Item'),
+            onTap: () {
+                // Route menu ke halaman produk
+                Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ProductPage()),
+                );
+            },
+        ),
         ],
       ),
     );

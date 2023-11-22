@@ -2,6 +2,70 @@ Nama    : Aiza Derisyana
 NPM     : 22060082436
 Kelas   : PBP C
 
+Tugas 9
+
+Apakah bisa kita melakukan pengambilan data JSON tanpa membuat model terlebih dahulu? Jika iya, apakah hal tersebut lebih baik daripada membuat model sebelum melakukan pengambilan data JSON?
+
+  Tentu, kita dapat mangambil data dalam format JSON tanpa melakukan pemodelan terlebih dahulu. Namun, pendekatan ini mungkin akan lebih menantang dalam konteks pemetaan data ke dalam struktur peta, terutama ketika bekerja dengan objek map. Sebaliknya, pembuatan model data sebelumnya dapat membantu mengurangi potensi kesalahan ketika Anda berurusan dengan data JSON atau mencoba untuk memetakan data ke dalam struktur yang diinginkan. Proyek di GitHub juga menjelaskan cara mengakses data JSON tanpa membuat model terlebih dahulu dengan memasukkan data JSON ke dalam objek peta (map). Namun, penting untuk diingat bahwa pengambilan data JSON tanpa menggunakan model mungkin akan menghadirkan tantangan dalam pemetaan data dengan benar ke dalam objek peta.
+
+Jelaskan fungsi dari CookieRequest dan jelaskan mengapa instance CookieRequest perlu untuk dibagikan ke semua komponen di aplikasi Flutter
+
+  **Fungsi dari CookieRequest**:
+  1. Menyimpan Info Login: CookieRequest membantu menyimpan informasi seperti detail login kita. Jadi, jika kita sudah masuk (login) ke dalam aplikasi, CookieRequest membantu agar kita tidak perlu login lagi setiap kali membuka halaman baru.
+  2. Mengingat Pilihan Kita: Misalnya, jika kita memilih pengaturan tertentu di aplikasi, CookieRequest membantu mengingat pilihan tersebut, sehingga kita tidak perlu mengaturnya lagi setiap kali.
+
+  **Mengapa CookieRequest Dibagikan ke Semua Komponen**:
+  1. Konsistensi: Agar setiap bagian dari aplikasi ingat siapa kita sebagai pengguna dan tidak meminta kita untuk login ulang atau mengatur preferensi lagi di setiap halaman.
+  2. Efisiensi: Dengan berbagi CookieRequest, aplikasi berjalan lebih cepat dan lancar karena tidak perlu memuat ulang informasi yang sama berulang kali.
+
+Jelaskan mekanisme pengambilan data dari JSON hingga dapat ditampilkan pada Flutter.
+
+  1. Pembuatan Model: Pertama, buat kelas Dart yang mencerminkan struktur data JSON. Kelas ini akan memiliki properti yang sama dengan kunci dalam JSON. Di dalamnya, kita tambahkan fungsi untuk mengubah data dari dan ke format JSON, yang dikenal sebagai metode fromJson dan toJson.
+  2. Pengambilan Data: Selanjutnya, kita mengambil data dari sebuah web service. Ini dilakukan dengan mengirimkan permintaan HTTP menggunakan paket http di Flutter, dan mendapatkan balasan dalam bentuk JSON.
+  3. Parsing Data JSON: Balasan JSON yang diterima diubah menjadi objek Dart menggunakan fungsi jsonDecode. Ini mengubah JSON menjadi Map atau List di Dart.
+  4. Konversi Menggunakan Model: Data JSON yang sudah diubah menjadi objek Dart selanjutnya dikonversi menjadi objek model menggunakan metode fromJson yang kita definisikan. Jika data berupa array, kita proses setiap elemen array untuk diubah menjadi objek model.
+  5. Menampilkan Data: Akhirnya, untuk menunjukkan data di Flutter, kita memanfaatkan widget yang tersedia. Contohnya, menggunakan ListView.builder untuk menampilkan daftar item.
+
+Jelaskan mekanisme autentikasi dari input data akun pada Flutter ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada Flutter.
+
+  Proses autentikasi yang menghubungkan aplikasi Flutter dengan backend Django terjadi dalam beberapa langkah penting. Awalnya, di aplikasi Flutter, pengguna memasukkan informasi akun seperti username dan password melalui tampilan pengguna. Flutter lalu mengirim data ini ke server Django menggunakan permintaan HTTP bertipe POST, dengan data dalam format JSON. Django, setelah menerima data ini, memulai proses autentikasi yang meliputi verifikasi detail akun terhadap database untuk memastikan keakuratan dan kevalidan informasi tersebut. Jika verifikasi berhasil, Django menghasilkan token autentikasi dan mengirimkannya kembali ke Flutter.
+  Setelah Flutter menerima respons dari Django, aplikasi bereaksi sesuai dengan hasil autentikasi. Apabila pengguna berhasil terautentikasi, aplikasi menyimpan token dan mengarahkan pengguna ke halaman utama atau dashboard, memungkinkan akses ke berbagai fitur sesuai dengan hak akses pengguna. Jika autentikasi tidak berhasil, aplikasi Flutter akan menampilkan pesan error dan meminta pengguna untuk mencoba lagi. Setelah berhasil login, pengguna dapat mengakses dan berinteraksi dengan menu atau fitur yang tersedia di aplikasi, yang sekarang aman berkat proses verifikasi identitas oleh Django. Proses ini memastikan keamanan data dan akses eksklusif kepada pengguna yang terautentikasi untuk fitur tertentu dalam aplikasi.
+
+Sebutkan seluruh widget yang kamu pakai pada tugas ini dan jelaskan fungsinya masing-masing.
+
+  - **Form**: Widget yang digunakan untuk membuat form input.
+  - **GlobalKey<FormState>**: Kunci yang digunakan untuk mengontrol state form.
+  - **TextFormField**: Widget input teks dengan validasi yang terintegrasi.
+  - **InkWell**: Widget ini digunakan untuk menangani ketukan pada item daftar. Ketika item ditekan, ia akan menavigasi ke DetailProductPage dengan data item yang relevan
+  - **Material**: Widget yang menambahkan efek visual material design.
+  - **Center**: Widget yang menengahkan child widgetnya.
+  - **Provider**: Widget yang digunakan untuk mengelola state aplikasi secara lebih efisien.
+  - **CookieRequest (Custom Widget)**: Widget kustom yang mungkin terkait dengan request otentikasi atau manajemen cookie. 
+  - **ShopCard (Custom Widget)**: Widget kustom, mungkin untuk menampilkan informasi produk atau item dalam format kartu.
+  - **ShopItem (Custom Widget)**: Struktur data kustom yang mungkin digunakan untuk menampung data item dalam aplikasi.
+  - **MaterialApp**: Widget root dalam aplikasi Flutter yang menggunakan material design.
+  - **Provider (Package)**: Paket yang digunakan untuk manajemen state di Flutter.
+
+Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step! (bukan hanya sekadar mengikuti tutorial).
+
+  1. **Membuat Halaman Formulir Penambahan Produk Baru**: 
+      Pertama, saya memulai dengan menambahkan aplikasi baru yang bernama authentication ke proyek Django saya. Untuk mendukung fungsi login, saya membuat fungsi dengan nama yang sama di dalam file views.py dan kemudian mengatur routing-nya agar dapat diakses. Setelah itu, saya melanjutkan ke pembuatan tampilan login pada sisi Flutter dengan membuat file baru bernama login.dart di dalam folder screens. File ini berisi kode yang berkaitan dengan tampilan login pada aplikasi Flutter.
+
+  2. **Mengintegrasikan sistem autentikasi Django dengan proyek tugas Flutter**:
+      Langkah awal yang saya ambil adalah menambahkan dua paket ke aplikasi Flutter saya. Paket-paket tersebut adalah `provider` dan `pbp_django_auth`, yang saya tambahkan dengan menggunakan perintah `flutter pub add` untuk masing-masing paket. Setelah itu, saya membuat perubahan pada kode di file `main.dart` untuk mengintegrasikan dan mengkonfigurasi `CookieRequest` library yang digunakan untuk otentikasi dan pengelolaan sesi.
+
+  3. **Membuat model kustom sesuai dengan proyek aplikasi Django**:
+      Menyalin data JSON dan menempelkannya di Quicktype, sebuah alat yang membantu dalam mengonversi JSON ke kode. Selanjutnya, saya membuat sebuah folder baru di dalam direktori `lib` aplikasi Flutter saya dengan nama `models`. Setelah folder dibuat, saya lanjutkan dengan membuat file baru di dalam folder tersebut, diberi nama `product.dart`. Kode yang telah dicopy dari Quicktype sebelumnya kemudian saya tempelkan di dalam file `product.dart` ini.
+   
+  4.  **Membuat halaman yang berisi daftar semua item yang terdapat pada endpoint JSON di Django yang telah kamu deploy.**:
+      Membuat sebuah file baru yang dinamai `list_product.dart` di dalam direktori `screens`. Selanjutnya, saya mengisi file tersebut dengan kode yang telah disediakan. Kelas yang dibuat dalam kode tersebut berfungsi untuk mengelola daftar produk yang diambil dari format JSON dan mengubahnya menjadi objek `Product`. Kode ini dirancang untuk menampilkan informasi seperti nama, jumlah, dan deskripsi dari setiap item yang terdapat dalam daftar produk.
+
+  5.  **Membuat halaman detail untuk setiap item yang terdapat pada halaman daftar Item**:
+      Membuat file baru yang saya beri nama `detail_page.dart` di dalam folder screens. Setelah itu, saya mengisi file tersebut dengan kode yang telah disiapkan, yang berkaitan dengan halaman detail produk di aplikasi.
+
+===============================================================================================================================
+===============================================================================================================================
+
 Tugas 8
 
 Jelaskan perbedaan antara Navigator.push() dan Navigator.pushReplacement(), disertai dengan contoh mengenai penggunaan kedua metode tersebut yang tepat!
